@@ -97,6 +97,80 @@
             border-bottom-color: var(--white); /* Underline on hover */
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1100; /* Above nav */
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--white);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Show nav-links as a dropdown */
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex; /* Show hamburger on smaller screens */
+            }
+
+            .nav-links {
+                display: none; /* Hide links by default */
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: var(--gradient-nav-start);
+                flex-direction: column;
+                width: 100%;
+                padding: 20px 0;
+                box-shadow: var(--shadow-md);
+                z-index: 1000;
+            }
+
+            .nav-links a {
+                margin: 10px 0;
+                text-align: center;
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links.active {
+                display: flex; /* Show links when active */
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+
         /* Header/Hero Section */
         header {
             position: relative;
@@ -475,6 +549,7 @@
                  height: 28px;
              }
         }
+
         .toppers-grid {
         display: grid;
         /* Responsive grid - adjusts columns based on available space */
@@ -547,6 +622,116 @@
              padding: 20px 15px;
          }
     }
+
+    /* Additional Media Queries for Mobile Responsiveness */
+
+    /* For screens smaller than 576px */
+    @media (max-width: 576px) {
+        body {
+            font-size: 0.9rem; /* Slightly smaller base font size */
+        }
+
+        nav {
+            padding: 12px 16px; /* Reduce padding */
+        }
+
+        nav h1 {
+            font-size: 1.4rem; /* Smaller logo text */
+        }
+
+        .nav-links {
+            display: none; /* Hide links for mobile */
+        }
+
+        .toppers-grid {
+            grid-template-columns: 1fr; /* Single column layout */
+            gap: 20px; /* Reduce gap */
+        }
+
+        .topper-card {
+            padding: 15px; /* Reduce padding */
+        }
+
+        .topper-card img {
+            width: 80px; /* Smaller image */
+            height: 80px;
+        }
+
+        .courses {
+            grid-template-columns: 1fr; /* Single column layout */
+            gap: 20px; /* Reduce gap */
+        }
+
+        .btn {
+            padding: 10px 20px; /* Adjust button size */
+            font-size: 0.9rem; /* Smaller font size */
+        }
+
+        header h1 {
+            font-size: 1.8rem; /* Smaller hero text */
+        }
+
+        header p {
+            font-size: 1rem; /* Adjust paragraph size */
+        }
+
+        .section {
+            padding: 40px 16px; /* Reduce section padding */
+        }
+
+        .section-content {
+            padding: 20px; /* Reduce content padding */
+        }
+
+        footer {
+            padding: 20px 16px; /* Reduce footer padding */
+        }
+
+        .whatsapp-bubble {
+            width: 50px;
+            height: 50px;
+            bottom: 15px;
+            right: 15px;
+        }
+
+        .whatsapp-bubble img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    /* For screens between 576px and 768px */
+    @media (max-width: 768px) {
+        nav {
+            padding: 14px 20px; /* Adjust padding */
+        }
+
+        .toppers-grid {
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 25px;
+        }
+
+        .courses {
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 25px;
+        }
+
+        header h1 {
+            font-size: 2.2rem; /* Adjust hero text size */
+        }
+
+        header p {
+            font-size: 1.1rem; /* Adjust paragraph size */
+        }
+
+        .section {
+            padding: 50px 20px; /* Adjust section padding */
+        }
+
+        .section-content {
+            padding: 30px; /* Adjust content padding */
+        }
+    }
     </style>
 </head>
 <body>
@@ -558,7 +743,12 @@
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
         </div>
-        </nav>
+        <button class="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
 
     <header>
         <div>
@@ -736,6 +926,15 @@
                     button.classList.add('active');
                 }
             });
+        });
+
+        // Hamburger Menu Script
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>
