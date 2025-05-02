@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaushal IAS - Modern Coaching</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Refined Color Palette */
+            --primary: #2563eb; /* Tailwind Blue 600 */
+            --primary-dark: #1d4ed8; /* Tailwind Blue 700 */
+            --secondary: #f8f9fa; /* Very light gray */
+            --text: #1f2937; /* Dark Gray */
+            --text-light: #6b7280; /* Medium Gray */
+            --accent: #f97316; /* Tailwind Orange 500 */
+            --white: #ffffff;
+            --border-color: #e5e7eb; /* Light border gray */
+
+            /* Gradients */
+            --gradient-start: #3b82f6; /* Blue 500 */
+            --gradient-end: #60a5fa; /* Blue 400 */
+            --gradient-nav-start: #1e3a8a; /* Darker Blue 800 */
+            --gradient-nav-end: #2563eb; /* Blue 600 */
+
+            /* Shadows - Softer */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Added primary color RGB for focus rings */
+            --primary-rgb: 37, 99, 235;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+             scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        body {
+            /* Subtle gradient background */
+            background: linear-gradient(170deg, var(--secondary) 0%, var(--white) 30%);
+            color: var(--text);
+            font-family: 'Inter', sans-serif; /* Modern Font */
+            line-height: 1.7; /* Improved readability */
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* Updated Gradient */
+            background: linear-gradient(to right, var(--gradient-nav-start), var(--gradient-nav-end));
+            color: var(--white);
+            padding: 16px 30px; /* Slightly more padding */
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        nav h1 {
+            font-size: 1.6rem; /* Slightly larger */
+            font-weight: 700; /* Bolder */
+        }
+
+        nav .nav-links a { /* Added a class for easier selection */
+            color: var(--white);
+            margin-left: 25px;
+            text-decoration: none;
+            font-weight: 500; /* Medium weight */
+            transition: opacity 0.2s ease;
+            padding-bottom: 5px;
+             border-bottom: 2px solid transparent; /* Prepare for hover effect */
+        }
+
+        nav .nav-links a:hover {
+            opacity: 0.9;
+            border-bottom-color: var(--white); /* Underline on hover */
+        }
+
+        /* Header/Hero Section */
+        header {
+            position: relative;
+            min-height: 85vh; /* Slightly less tall */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 120px 24px 60px; /* Adjusted padding */
+            overflow: hidden; /* Prevent image overflow issues */
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+             /* Darker, more subtle overlay */
+            background: linear-gradient(135deg, rgba(29, 78, 216, 0.85), rgba(37, 99, 235, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3') no-repeat center center/cover;
+            z-index: -1;
+             filter: brightness(0.9); /* Slightly darken the image */
+        }
+
+        header h1 {
+            font-size: 3rem; /* Larger heading */
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+             text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Subtle text shadow */
+        }
+
+        header p {
+            font-size: 1.25rem; /* Slightly larger paragraph */
+            margin-bottom: 2.5rem;
+            max-width: 600px; /* Limit width for readability */
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: var(--accent); /* Using accent color for CTA */
+            color: white;
+            padding: 12px 28px; /* More padding */
+            border: none;
+            margin-top: 20px;
+            border-radius: 8px; /* More rounded corners */
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+             box-shadow: var(--shadow-sm);
+        }
+
+        .btn:hover {
+            background-color: #ea580c; /* Tailwind Orange 600 */
+            transform: translateY(-3px); /* Slightly bigger lift */
+             box-shadow: var(--shadow-lg);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 24px; /* Increased padding */
+            margin: 40px auto; /* Space between sections */
+             max-width: 1100px; /* Keep max-width */
+        }
+
+        .section-content { /* Wrapper for content inside section for styling */
+             background-color: var(--white);
+             padding: 50px 40px;
+             border-radius: 12px; /* Rounded corners for sections */
+             box-shadow: var(--shadow-lg); /* Softer shadow */
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 50px; /* More space below heading */
+            font-size: 2.25rem; /* Larger section titles */
+            font-weight: 600;
+            color: var(--primary); /* Use primary color */
+        }
+
+        /* Courses Section - Using Grid */
+        .courses {
+            display: grid;
+            /* Responsive grid columns */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; /* Increased gap */
+        }
+
+        .course {
+            background: var(--white);
+            padding: 30px 25px; /* More padding */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: var(--shadow-md); /* Apply shadow */
+            text-align: center;
+            /* Removed border-top */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color); /* Subtle border */
+        }
+
+        .course:hover {
+            transform: translateY(-6px); /* Increased lift */
+             box-shadow: var(--shadow-lg); /* Enhance shadow on hover */
+        }
+
+        .course h3 {
+            margin-bottom: 16px;
+            font-size: 1.4rem; /* Slightly larger */
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .course p {
+             color: var(--text-light);
+             font-size: 0.95rem;
+        }
+
+        /* Form Section */
+        /* Removed gradient from form-section, handled by .section-content */
+
+        .form-container { /* Wrapper for form */
+            max-width: 600px; /* Wider form */
+            margin: auto;
+            background: var(--white); /* Keep white */
+            padding: 40px; /* More padding */
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color); /* Subtle border */
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Increased gap */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            padding: 14px 16px; /* Adjusted padding */
+            border-radius: 8px; /* Rounded corners */
+            border: 1px solid var(--border-color);
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+             background-color: #f9fafb; /* Slightly off-white input background */
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+             /* Subtle focus ring */
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+             background-color: var(--white);
+        }
+
+        textarea {
+             resize: vertical; /* Allow vertical resize */
+        }
+
+        .form-container .btn { /* Style form button */
+             margin-top: 10px; /* Less margin top inside form */
+             background-color: var(--primary); /* Use primary color for submit */
+        }
+        .form-container .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 15px;
+             border: 1px solid var(--border-color);
+             border-radius: 8px;
+             overflow: hidden; /* Keep content within rounded borders */
+             background-color: var(--white);
+             box-shadow: var(--shadow-sm);
+             transition: box-shadow 0.3s ease;
+        }
+         .faq-item:hover {
+             box-shadow: var(--shadow-md);
+         }
+
+        .faq-question {
+            /* Removed gradient, using solid color */
+            background: var(--white);
+            color: var(--text); /* Dark text */
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 18px 25px; /* More padding */
+            border-radius: 0; /* Remove radius from button itself */
+             border-bottom: 1px solid transparent; /* Add border space */
+            font-weight: 600; /* Bolder questions */
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+             display: flex; /* For icon alignment */
+             justify-content: space-between;
+             align-items: center;
+        }
+
+        .faq-question:hover {
+             background-color: #f9fafb; /* Subtle hover */
+        }
+
+         /* Add + / - icon */
+         .faq-question::after {
+             content: '+';
+             font-size: 1.5rem;
+             color: var(--primary);
+             transition: transform 0.3s ease;
+         }
+
+         .faq-question.active::after {
+             transform: rotate(45deg);
+         }
+         .faq-question.active {
+             border-bottom: 1px solid var(--border-color);
+         }
+
+
+        .faq-answer {
+            display: none; /* Keep hidden by default */
+            padding: 20px 25px;
+            background: #f9fafb; /* Very light background for answer */
+            /* Removed border-radius and margin-top */
+            color: var(--text-light); /* Lighter text for answer */
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            /* Simple dark footer */
+            background: #111827; /* Tailwind Gray 900 */
+            color: #d1d5db; /* Tailwind Gray 300 */
+            padding: 40px 24px; /* Increased padding */
+            text-align: center;
+            margin-top: 60px; /* Space before footer */
+            /* Removed shadow */
+        }
+
+        footer p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+         footer a {
+             color: #9ca3af; /* Tailwind Gray 400 */
+             text-decoration: none;
+             transition: color 0.2s ease;
+         }
+         footer a:hover {
+             color: var(--white);
+         }
+
+        /* WhatsApp Bubble */
+        .whatsapp-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow-lg); /* Use defined shadow */
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-bubble:hover {
+            transform: scale(1.1) rotate(5deg); /* Add slight rotation */
+             box-shadow: var(--shadow-xl);
+        }
+
+        .whatsapp-bubble img {
+            width: 32px; /* Slightly larger icon */
+            height: 32px;
+        }
+
+        /* Responsive Design Adjustments */
+        @media (max-width: 992px) {
+             header h1 {
+                 font-size: 2.5rem;
+             }
+             header p {
+                 font-size: 1.15rem;
+             }
+             .section {
+                 padding: 60px 24px;
+             }
+             .section-content {
+                 padding: 40px 30px;
+             }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                min-height: 70vh;
+                padding-top: 100px; /* Adjust for nav */
+            }
+            header h1 {
+                font-size: 2.2rem;
+            }
+             header p {
+                 font-size: 1.1rem;
+             }
+
+            nav .nav-links {
+                /* Simple hide - for full functionality, JS for a burger menu is needed */
+                display: none;
+            }
+            nav {
+                padding: 16px 24px;
+            }
+
+            .courses {
+                grid-template-columns: 1fr; /* Stack courses */
+                gap: 25px;
+            }
+             .section h2 {
+                 font-size: 2rem;
+                 margin-bottom: 40px;
+             }
+             .form-container {
+                 padding: 30px 25px;
+             }
+              .faq-question {
+                  padding: 15px 20px;
+                  font-size: 1rem;
+              }
+              .faq-answer {
+                  padding: 15px 20px;
+              }
+        }
+
+        @media (max-width: 576px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+             .section {
+                 padding: 50px 16px; /* Less padding on smallest screens */
+             }
+             .section-content {
+                 padding: 30px 20px;
+             }
+             .btn {
+                 padding: 10px 22px;
+                 font-size: 0.95rem;
+             }
+             footer {
+                 padding: 30px 16px;
+             }
+             .whatsapp-bubble {
+                 width: 55px;
+                 height: 55px;
+                 bottom: 20px;
+                 right: 20px;
+             }
+             .whatsapp-bubble img {
+                 width: 28px;
+                 height: 28px;
+             }
+        }
+        .toppers-grid {
+        display: grid;
+        /* Responsive grid - adjusts columns based on available space */
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Start with min 220px */
+        gap: 30px; /* Gap between cards */
+    }
+
+    .topper-card {
+        background-color: var(--white);
+        border: 1px solid var(--border-color);
+        border-radius: 10px; /* Consistent rounding */
+        padding: 25px 20px;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .topper-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .topper-card img {
+        width: 100px; /* Adjust size as needed */
+        height: 100px;
+        border-radius: 50%; /* Circular images */
+        object-fit: cover; /* Prevents image stretching */
+        margin: 0 auto 15px; /* Center image and add space below */
+        border: 3px solid var(--primary-dark); /* Optional border */
+        display: block; /* Ensures margin auto works correctly */
+        background-color: var(--secondary); /* Placeholder bg color */
+    }
+
+    .topper-card h3 {
+        margin-bottom: 5px;
+        font-size: 1.1rem; /* Name size */
+        font-weight: 600;
+        color: var(--primary-dark); /* Darker blue for name */
+    }
+
+    .topper-card .topper-rank {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--primary); /* Primary blue for rank */
+        margin-bottom: 15px; /* Space before quote */
+    }
+
+    .topper-card .topper-quote {
+        font-size: 0.85rem;
+        font-style: italic;
+        color: var(--text-light);
+        padding-top: 10px;
+        margin-top: 10px;
+         border-top: 1px dashed var(--border-color); /* Separator line */
+         line-height: 1.5; /* Better readability for quotes */
+    }
+
+    /* Responsive adjustments specifically for toppers grid if needed */
+    @media (max-width: 576px) {
+        .toppers-grid {
+             /* Ensure single column on very small screens if auto-fit doesn't suffice */
+             grid-template-columns: 1fr;
+             gap: 20px;
+         }
+         .topper-card img {
+             width: 90px;
+             height: 90px;
+         }
+         .topper-card {
+             padding: 20px 15px;
+         }
+    }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Kaushal IAS</h1>
+        <div class="nav-links">
+            <a href="#courses">Courses</a>
+            <a href="#demo">Demo</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+        </div>
+        </nav>
+
+    <header>
+        <div>
+            <h1>Crack IAS/OCS with Confidence</h1>
+            <p>Join Kaushal IAS – Odisha's Trusted Name in Civil Services Coaching</p>
+            <a href="#demo" class="btn">Book a Free Demo</a>
+        </div>
+    </header>
+
+    <section class="section" id="courses">
+        <div class="section-content">
+            <h2>Our Courses</h2>
+            <div class="courses">
+                <div class="course">
+                    <h3>IAS Prelims</h3>
+                    <p>Comprehensive coverage, expert faculty, and daily tests.</p>
+                </div>
+                <div class="course">
+                    <h3>OCS Mains</h3>
+                    <p>Answer writing practice and model solutions.</p>
+                </div>
+                <div class="course">
+                    <h3>Mock Interviews</h3>
+                    <p>Real-time feedback from experienced panelists.</p>
+                </div>
+                <div class="course">
+                    <h3>Foundation Course</h3>
+                    <p>Integrated preparation for Prelims, Mains & Interview.</p>
+                </div>
+                <div class="course">
+                    <h3>Special Odia Classes</h3>
+                    <p>Comprehensive coverage, expert faculty, and daily tests.</p>
+                </div>
+                <div class="course">
+                    <h3>OCS Prelims</h3>
+                    <p>Comprehensive coverage, expert faculty, and daily tests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section form-section" id="demo">
+         <h2>Book a Free Demo Class</h2>
+        <div class="form-container">
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <textarea rows="4" placeholder="Your Message (Optional)"></textarea>
+                <button type="submit" class="btn">Request Demo Class</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+         <div class="section-content">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <button class="faq-question">What is the duration of the IAS course?</button>
+                <div class="faq-answer">The full IAS Foundation course typically spans 10–12 months, covering Prelims, Mains, and Interview preparation stages comprehensively. Specific modules might have different durations.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Do you offer online classes?</button>
+                <div class="faq-answer">Yes, we provide flexible learning options including fully online live classes, recorded sessions, and traditional offline classroom programs for all our major courses.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Is there any free trial or demo class?</button>
+                <div class="faq-answer">Absolutely! We encourage prospective students to experience our teaching style. You can book a free demo class by filling out the form in the 'Book a Free Demo' section above or contacting us directly.</div>
+            </div>
+             <div class="faq-item">
+                <button class="faq-question">What study material is provided?</button>
+                <div class="faq-answer">Enrolled students receive comprehensive, well-researched study material, including printed notes, current affairs magazines, practice question banks, and access to our online resource portal.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="toppers">
+        <div class="section-content">
+            <h2>Meet Our Achievers</h2>
+            <p class="section-subtitle" style="text-align: center; max-width: 700px; margin: -30px auto 50px; color: var(--text-light);">
+                We are proud of our students who have secured top ranks in prestigious exams like IAS and OCS.
+            </p>
+            <div class="toppers-grid">
+                <div class="topper-card">
+                    <img src="https://via.placeholder.com/120/2563EB/FFFFFF?text=Topper1" alt="Photo of Topper Name 1">
+                    <h3>Topper Name 1</h3>
+                    <p class="topper-rank">IAS Rank 15 (2024)</p>
+                    <p class="topper-quote">"Kaushal IAS provided the right guidance..."</p>
+                </div>
+                <div class="topper-card">
+                    <img src="https://via.placeholder.com/120/3B82F6/FFFFFF?text=Topper2" alt="Photo of Topper Name 2">
+                    <h3>Topper Name 2</h3>
+                    <p class="topper-rank">OCS Rank 5 (2024)</p>
+                     <p class="topper-quote">"Excellent faculty and test series helped..."</p>
+               </div>
+                <div class="topper-card">
+                    <img src="https://via.placeholder.com/120/60A5FA/FFFFFF?text=Topper3" alt="Photo of Topper Name 3">
+                    <h3>Topper Name 3</h3>
+                    <p class="topper-rank">IAS Rank 42 (2023)</p>
+                     <p class="topper-quote">"Consistent mock tests were key."</p>
+               </div>
+                <div class="topper-card">
+                    <img src="https://via.placeholder.com/120/1E3A8A/FFFFFF?text=Topper4" alt="Photo of Topper Name 4">
+                    <h3>Topper Name 4</h3>
+                    <p class="topper-rank">OCS Rank 12 (2023)</p>
+                     <p class="topper-quote">"Personal attention made the difference."</p>
+               </div>
+                <div class="topper-card">
+                    <img src="https://via.placeholder.com/120/2563EB/FFFFFF?text=Topper5" alt="Photo of Topper Name 5">
+                    <h3>Topper Name 5</h3>
+                    <p class="topper-rank">IAS Rank 88 (2024)</p>
+                     <p class="topper-quote">"The interview guidance was invaluable."</p>
+               </div>
+                <div class="topper-card">
+                    <img src="https://via.placeholder.com/120/3B82F6/FFFFFF?text=Topper6" alt="Photo of Topper Name 6">
+                    <h3>Topper Name 6</h3>
+                    <p class="topper-rank">OCS Rank 21 (2024)</p>
+                     <p class="topper-quote">"Great material and supportive environment."</p>
+               </div>
+                <div class="topper-card">
+                    <img src="https://via.placeholder.com/120/60A5FA/FFFFFF?text=Topper7" alt="Photo of Topper Name 7">
+                    <h3>Topper Name 7</h3>
+                    <p class="topper-rank">IAS Rank 110 (2023)</p>
+                     <p class="topper-quote">"Cleared doubts effectively."</p>
+               </div>
+                <div class="topper-card">
+                    <img src="https://via.placeholder.com/120/1E3A8A/FFFFFF?text=Topper8" alt="Photo of Topper Name 8">
+                    <h3>Topper Name 8</h3>
+                    <p class="topper-rank">OCS Rank 30 (2023)</p>
+                     <p class="topper-quote">"Focus on answer writing was crucial."</p>
+               </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>&copy; 2025 Kaushal IAS. All rights reserved.</p>
+        <p>
+            Email: <a href="mailto:info@kaushalias.in">info@kaushalias.in</a> |
+            Phone: <a href="tel:+919999999999">+91-99999-99999</a>
+            </p>
+        <p>Follow us: [Social Media Links Placeholder]</p>
+    </footer>
+
+    <a class="whatsapp-bubble" href="https://wa.me/919999999999" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+    </a>
+
+    <script>
+        // Enhanced FAQ Script to toggle class for icon change
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isActive = button.classList.contains('active');
+
+                // Close all other answers and remove active class
+                document.querySelectorAll('.faq-answer').forEach(el => {
+                     if (el !== answer) {
+                         el.style.display = 'none';
+                     }
+                 });
+                 document.querySelectorAll('.faq-question').forEach(btn => {
+                     if (btn !== button) {
+                         btn.classList.remove('active');
+                     }
+                 });
+
+
+                // Toggle current answer and active class
+                if (isActive) {
+                    answer.style.display = 'none';
+                    button.classList.remove('active');
+                } else {
+                    answer.style.display = 'block';
+                    button.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
